@@ -1,0 +1,16 @@
+/* .title {
+  color: greenyellow;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 1), 0 0 25px blue, 0 0 5px darkblue;
+} */
+
+.grande {
+  font-size: 40px;
+}
+
+.rojo {
+  color: red;
+}
+
+.sans {
+  font-family: sans-serif;
+}

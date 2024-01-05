@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Formulario de registro</title>
+</head>
+
+<body>
+  <h1>Formulario de registro</h1>
+  <form class="formulario">
+
+    <h2>Inscripción de Materias adeudadas:</h2>
+
+    <input placeholder="Nombre completo" type="text" name="fullname" id="fullname" required>
+    <br>
+
+    <input placeholder="Correo electrónico" type="email" name="mail" id="mail" required>
+    <br>
+
+    <select name="materias" id="materias" multiple required>
+      <option value="html">HTML</option>
+      <option value="css">CSS</option>
+      <option value="js">JavaScript</option>
+      <option value="php">PHP</option>
+      <option value="python">Python</option>
+    </select>
+
+    <div class="error hide-error"></div>
+
+    <input type="submit" value="enviar">
+  </form>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
