@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: sans-serif;
+  background-color: #222;
+  color: white;
+}
+
+h1 {
+  padding: 0.5em 0;
+  text-align: center;
+}
+
+#materias {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.materia {
+  display: grid;
+  grid-template-columns: 1fr 4ch;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+
+  text-align: center;
+  margin-left: 10px;
+
+  color: black;
+
+  h3 {
+    font-weight: normal;
+    text-align: left;
+    padding: 10px;
+    background-color: #ccc;
+  }
+
+  p {
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background-color: #aaa;
+  }
+
+  animation: visibility 0.5s;
+  
+}
+
+@keyframes visibility {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side,#555 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%,#555);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation: l13 1s infinite linear;
+}
+@keyframes l13{ 
+  100%{transform: rotate(1turn)}
+}
