@@ -30,11 +30,11 @@ function card(name) {
   <div class="card">${name}</div>`;
 }
 
-const cant = prompt('Cuantas tarjetas quieres mostrar? (max. 10)');
+const cant = prompt('Cuantas tarjetas quieres mostrar? (max. 12)');
 
-if (cant > 10) {
+if (cant > 12) {
   // el problema radica con la cantidad de data que te puede dar el servidor y que algunos id no existen
-  alert('Error xD');
+  alert('Máximo 12 tarjetas');
 } else {
   getNamesForRange(1, cant).then((res) => {
     document.body.innerHTML = res.map(card).join('');
