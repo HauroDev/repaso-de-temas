@@ -1,6 +1,6 @@
-package com.microsoft.greater;
+package com.dialogod.greater;
 
-import com.microsoft.hello.Hello;
+import com.dialogod.hello.Hello;
 
 public class Greater {
     public static void main(String[] args) {
@@ -8,3 +8,4 @@ public class Greater {
         System.out.println(hello.hello("Anna"));
     }
 }
+
