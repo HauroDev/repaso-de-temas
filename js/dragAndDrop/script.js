@@ -1,5 +1,43 @@
+function randomColorHEX() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function textWhiteOrBlack(color) {
+  if (typeof color !== 'string') {
+    return null;
+  }
+
+  const r = parseInt(color.substring(1, 2), 16);
+  const g = parseInt(color.substring(3, 2), 16);
+  const b = parseInt(color.substring(5, 2), 16);
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq < 128 ? 'black' : 'white';
+}
+
+const fragment = document.createDocumentFragment();
+const container = document.querySelector('.container');
+
+for (let i = 0; i < Math.random() * 10 + 10; i++) {
+  const div = document.createElement('div');
+  let backgroundColor = randomColorHEX();
+  let textColor = textWhiteOrBlack(backgroundColor);
+
+  div.classList.add('draggable');
+  div.draggable = true;
+  div.textContent = 'Box ' + (i + 1);
+  div.style.backgroundColor = randomColorHEX();
+  div.style.color = textColor;
+  fragment.appendChild(div);
+}
+
+container.appendChild(fragment);
+
 const draggables = document.querySelectorAll('.draggable');
-const containers = document.querySelectorAll('.container');
 
 draggables.forEach((draggable) => {
   draggable.addEventListener('dragstart', () => {
@@ -20,32 +58,36 @@ draggables.forEach((draggable) => {
   });
 });
 
-containers.forEach((container) => {
-  // calculate over a draggable element without dragging class
-  container.addEventListener('dragover', (event) => {
-    event.preventDefault();
+container.addEventListener('dragover', (event) => {
+  event.preventDefault();
 
-    const draggable = document.querySelector('.dragging');
-    const overElement = container.querySelector('.dragging-over');
+  const dragging = container.querySelector('.dragging');
+  const overElement = container.querySelector('.dragging-over');
 
-    if (draggable === overElement) {
-      return;
-    }
+  if (dragging.isSameNode(overElement)) {
+    return;
+  }
 
-    if (!overElement || !draggable) {
-      return;
-    }
+  if (!overElement || !dragging) {
+    return;
+  }
 
-    const overRect = overElement.getBoundingClientRect();
-    const draggableRect = draggable.getBoundingClientRect();
+  const draggingRect = dragging.getBoundingClientRect();
+  const overRect = overElement.getBoundingClientRect();
 
-    if (
-      draggableRect.top < overRect.top ||
-      draggableRect.left > overRect.left
-    ) {
-      container.insertBefore(draggable, overElement);
-    } else {
-      container.insertBefore(draggable, overElement.nextSibling);
-    }
-  });
+  if (draggingRect.x < overRect.x) {
+    overElement.after(dragging);
+  }
+
+  if (draggingRect.x > overRect.x) {
+    overElement.before(dragging);
+  }
+
+  if (draggingRect.y < overRect.y) {
+    overElement.after(dragging);
+  }
+
+  if (draggingRect.y > overRect.y) {
+    overElement.before(dragging);
+  }
 });
